@@ -1,0 +1,118 @@
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 25px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+}
+
+/* --- WeatherDisplay Component --- */
+.weather-display .location-info h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.weather-display .location-info p {
+  margin: 5px 0 20px;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+.weather-display .weather-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weather-display .weather-main {
+  display: flex;
+  align-items: center;
+}
+.weather-display .weather-main img {
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+.weather-display .weather-main .temperature {
+  font-size: 6rem;
+  font-weight: 300;
+  margin-left: -10px;
+}
+.weather-display .weather-main .temperature span {
+  font-size: 4rem;
+  vertical-align: top;
+}
+.weather-display .weather-extra {
+  text-align: right;
+}
+.weather-display .weather-extra .description {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+.weather-display .weather-extra .extra-stats {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+.weather-display .weather-extra .extra-stats strong {
+  color: #ffffff;
+}
+
+/* --- Forecast Components --- */
+.hourly-forecast-container h3, .daily-forecast-container h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.hour-cards-wrapper, .day-cards-wrapper {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: none; /* Firefox */
+}
+.hour-cards-wrapper::-webkit-scrollbar, .day-cards-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* --- Hourly Card --- */
+.hour-card {
+  flex: 0 0 90px;
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease;
+}
+.hour-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.hour-card .hour-time { font-size: 1rem; margin: 0 0 5px; }
+.hour-card .hour-icon { width: 50px; height: 50px; }
+.hour-card .hour-temp { font-size: 1.2rem; font-weight: 500; margin: 5px 0 0; }
+
+/* --- Daily Card --- */
+.day-card {
+  flex: 0 0 100px;
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.day-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+.day-card.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.day-card .day-name { font-weight: 500; margin: 0 0 10px; }
+.day-card .day-icon { width: 50px; height: 50px; }
+.day-card .day-temp { margin: 10px 0 0; font-size: 1rem; }

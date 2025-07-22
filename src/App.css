@@ -1,38 +1,95 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  margin: 0;
+  overflow-x: hidden;
+  
+  /* Background styles that cover the entire page */
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1.5s ease-in-out;
+  background-color: #1a202c; /* Fallback color */
+}
+
+/* Dynamic background classes applied to the body */
+body.default { background-image: url('/public/images/default.jpg'); }
+body.sunny { background-image: url('/public/images/day.jpg'); }
+body.night { background-image: url('/public/images/night.jpg');}
+body.cloudy { background-image: url('/public/images/clouds.jpg'); }
+body.rainy { background-image: url('/public/images/rain.jpg'); }
+body.snowy { background-image: url('/public/images/snow.jpg'); }
+body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
+
+/* .App is now just a transparent content container */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
   min-height: 100vh;
+  visibility: hidden; /* For GSAP */
+}
+
+/* --- RESTORED: Your custom search bar styles --- */
+.search-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.city-input {
+  padding: 15px 65px 15px 25px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur;
+  -webkit-backdrop-filter: blur(5px);
+  color: #ffffff;
+  width: 350px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.city-input::placeholder { color: rgba(255, 255, 255, 0.6); }
+.city-input:focus {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  border-radius: 30px;
+  border: none;
+  background-color: #ffffff;
+  color: #1a202c;
+  cursor: pointer;
+  margin-left: -45px;
+  transition: all 0.3s ease;
+}
+button:hover { transform: scale(1.05); }
+
+/* --- Your Loader & Error Styles (Unchanged) --- */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  background: rgba(255, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.4);
 }
