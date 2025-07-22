@@ -9,6 +9,7 @@ A sleek, modern, and responsive weather forecast application built with React. T
 <img width="1265" height="616" alt="image" src="https://github.com/user-attachments/assets/acf46cd7-9159-4e64-b41c-623197905096" />
 *The UI showing a clear sky in Buenaventura.*
 
+
 ✨ Features
 
 -   **Real-Time Weather Data**: Fetches current weather, hourly forecasts, and a 7-day forecast using the OpenWeatherMap API.
