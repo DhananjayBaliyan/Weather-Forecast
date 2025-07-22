@@ -2,7 +2,7 @@
 
 A sleek, modern, and responsive weather forecast application built with React. This app provides real-time weather data for any city in the world and features a stunning, dynamic background that changes according to the current weather conditions (day, night, clouds, rain, etc.).
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=vercel)](weather-forecast-9iupj51ls-dhananjay-baliyans-projects.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=vercel)](https://weather-forecast-delta-six.vercel.app/)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
 
