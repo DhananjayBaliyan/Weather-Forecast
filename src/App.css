@@ -3,22 +3,25 @@ body {
   color: #ffffff;
   margin: 0;
   overflow-x: hidden;
+  
+  /* Background styles that cover the entire page */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: fixed; /* Prevents background from scrolling on mobile */
   transition: background-image 1.5s ease-in-out;
-  background-color: #1a202c;
+  background-color: #1a202c; /* Fallback color */
 }
 
+/* Dynamic background classes applied to the body */
 body.default { background-image: url('/public/images/default.jpg'); }
-body.cloudy { background-image: url('/public/images/clouds.jpg'); }
 body.sunny { background-image: url('/public/images/day.jpg'); }
 body.night { background-image: url('/public/images/night.jpg');}
+body.cloudy { background-image: url('/public/images/clouds.jpg'); }
 body.rainy { background-image: url('/public/images/rain.jpg'); }
 body.snowy { background-image: url('/public/images/snow.jpg'); }
 body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
 
-/* --- Main App Container --- */
+/* .App is the main content container */
 .App {
   max-width: 900px;
   margin: 0 auto;
@@ -27,17 +30,18 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   visibility: hidden; /* For GSAP */
 }
 
-/* --- Search Bar --- */
+/* Search Bar Styles */
 .search-form {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  position: relative;
+  position: relative; /* Needed for button positioning */
   width: 100%;
-  max-width: 500px;
+  max-width: 500px; /* Give the search bar a max width */
   margin-left: auto;
   margin-right: auto;
 }
+
 .city-input {
   padding: 15px 25px;
   font-size: 1rem;
@@ -48,7 +52,7 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   backdrop-filter: blur;
   -webkit-backdrop-filter: blur(5px);
   color: #ffffff;
-  width: 100%;
+  width: 100%; /* Make input take full width of its container */
   outline: none;
   transition: all 0.3s ease;
 }
@@ -57,6 +61,7 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   border-color: rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.15);
 }
+
 button[type="submit"] {
   padding: 10px 25px;
   font-size: 1rem;
@@ -67,106 +72,85 @@ button[type="submit"] {
   background-color: #ffffff;
   color: #1a202c;
   cursor: pointer;
+  transition: all 0.3s ease;
+  
+  /* Position button inside the input area */
   position: absolute;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
-  transition: all 0.3s ease;
 }
 button[type="submit"]:hover { transform: translateY(-50%) scale(1.05); }
 
+/* Loader & Error Styles */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  background: rgba(255, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 0, 0, 0.4);
+}
 
 /* ======================================= */
-/* COMPONENT-SPECIFIC STYLES (ASSUMED)     */
-/* ======================================= */
-
-/* Styles for the main WeatherDisplay component */
-.weather-display {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 20px;
-  margin-bottom: 2rem;
-}
-
-.weather-info-left .city-name { font-size: 2.5rem; font-weight: 700; margin: 0; }
-.weather-info-left .date { font-size: 1rem; opacity: 0.8; }
-.weather-info-left .temp-display { display: flex; align-items: center; margin-top: 1rem; }
-.weather-info-left .temp { font-size: 5rem; font-weight: 700; line-height: 1; margin-left: 1rem; }
-.weather-info-left .weather-icon { width: 80px; height: 80px; }
-
-.weather-info-right .condition { font-size: 1.5rem; font-weight: 600; text-align: right; margin-bottom: 1rem; }
-.weather-info-right .details p { margin: 0.5rem 0; text-align: right; opacity: 0.8; }
-
-/* Styles for the forecast sections */
-.forecast-container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 1.5rem;
-  border-radius: 20px;
-  margin-bottom: 2rem;
-}
-.forecast-container h3 { margin-top: 0; margin-bottom: 1.5rem; text-align: center; }
-
-/* Container for hourly items to allow scrolling */
-.hourly-forecast, .daily-forecast {
-  display: flex;
-  overflow-x: auto; /* Makes it scrollable! */
-  padding-bottom: 15px; /* Space for scrollbar */
-}
-
-/* Hide scrollbar for a cleaner look */
-.hourly-forecast::-webkit-scrollbar, .daily-forecast::-webkit-scrollbar {
-  display: none;
-}
-.hourly-forecast, .daily-forecast { -ms-overflow-style: none; scrollbar-width: none; }
-
-
-/* ======================================= */
-/* RESPONSIVE STYLES                       */
+/* RESPONSIVE STYLES              */
 /* ======================================= */
 
 /* For Tablets and smaller devices */
 @media (max-width: 768px) {
-  .App { padding: 20px 15px; }
-
-  /* --- FIX FOR WEATHER DISPLAY --- */
-  .weather-display {
-    flex-direction: column; /* Stack left and right sections vertically */
-    align-items: flex-start; /* Align items to the start */
-    text-align: left;
+  .App {
+    padding: 20px 15px;
   }
 
-  .weather-info-right {
-    width: 100%;
-    margin-top: 2rem; /* Add space between the stacked sections */
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding-top: 1.5rem;
-  }
-
-  .weather-info-right .condition,
-  .weather-info-right .details p {
-    text-align: left; /* Align text to the left on mobile */
-  }
+  /* You might need to adjust font sizes in your components */
+  /* Example: */
+  /* .weather-display h1 { font-size: 4rem; } */
 }
 
 
 /* For Mobile phones */
 @media (max-width: 480px) {
-  .App { padding: 20px 10px; }
+  .App {
+    padding: 20px 10px;
+  }
 
-  /* Adjust fonts for smaller screens */
-  .weather-info-left .city-name { font-size: 2rem; }
-  .weather-info-left .temp { font-size: 4rem; }
-  .weather-info-left .weather-icon { width: 60px; height: 60px; }
-  .weather-info-right .condition { font-size: 1.2rem; }
-  
-  .search-form { margin-bottom: 1.5rem; }
-  .city-input { padding: 12px 20px; font-size: 0.9rem; }
-  button[type="submit"] { padding: 8px 20px; font-size: 0.9rem; }
+  .search-form {
+    margin-bottom: 1.5rem;
+  }
+
+  .city-input {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  button[type="submit"] {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Add styles for your other components here */
+  /* For example, making the hourly forecast scrollable */
+  .hourly-forecast-container {
+      overflow-x: auto; /* Allows horizontal scrolling */
+      white-space: nowrap; /* Prevents items from wrapping */
+      padding-bottom: 15px; /* Adds space for the scrollbar */
+  }
+
+  /* Hide scrollbar for a cleaner look (optional) */
+  .hourly-forecast-container::-webkit-scrollbar {
+      display: none;
+  }
 }
