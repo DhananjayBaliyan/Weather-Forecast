@@ -44,7 +44,7 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur;
   -webkit-backdrop-filter: blur(5px);
   color: #ffffff;
   width: 350px;
