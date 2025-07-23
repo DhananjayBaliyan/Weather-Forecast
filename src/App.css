@@ -7,7 +7,6 @@ body {
   /* Background styles that cover the entire page */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Prevents background from scrolling on mobile */
   transition: background-image 1.5s ease-in-out;
   background-color: #1a202c; /* Fallback color */
 }
@@ -21,7 +20,8 @@ body.rainy { background-image: url('/public/images/rain.jpg'); }
 body.snowy { background-image: url('/public/images/snow.jpg'); }
 body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
 
-/* .App is the main content container */
+
+/* .App is now just a transparent content container */
 .App {
   max-width: 900px;
   margin: 0 auto;
@@ -30,77 +30,49 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   visibility: hidden; /* For GSAP */
 }
 
-/* Search Bar Styles */
+/* --- RESTORED: Your custom search bar styles --- */
 .search-form {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  position: relative; /* Crucial for positioning the button inside */
-  width: 100%;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  
-  /* The dark, pill-shaped container style */
-  background-color: #2D3748; /* A dark slate gray */
-  border-radius: 50px;
-  padding: 5px; /* A little space around the inside */
-  border: 1px solid #4A5568; /* A subtle border */
 }
 
 .city-input {
-  padding: 15px 25px;
+  padding: 15px 65px 15px 25px;
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   border-radius: 30px;
-  
-  /* Make the input field transparent to show the container's color */
-  background: transparent;
-  border: none;
-  backdrop-filter: none; /* Remove the blur effect */
-  
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   color: #ffffff;
-  width: 100%;
+  width: 350px;
   outline: none;
   transition: all 0.3s ease;
 }
-
-.city-input::placeholder { 
-  color: rgba(255, 255, 255, 0.6); 
-}
-
-/* Remove the focus effect or adjust as needed */
+.city-input::placeholder { color: rgba(255, 255, 255, 0.6); }
 .city-input:focus {
-  background: transparent;
-  border-color: transparent;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-button[type="submit"] {
-  padding: 10px 25px;
+button {
+  padding: 15px 30px;
   font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   border-radius: 30px;
   border: none;
   background-color: #ffffff;
   color: #1a202c;
   cursor: pointer;
-  
-  /* Remove absolute positioning if you prefer the button outside */
-  /* Or keep it to place it inside */
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  
+  margin-left: -45px;
   transition: all 0.3s ease;
 }
+button:hover { transform: scale(1.05); }
 
-button[type="submit"]:hover { 
-  /* Adjust the hover transform to work with the new positioning */
-  transform: translateY(-50%) scale(1.05); 
-}
-
-/* Loader & Error Styles */
+/* --- Your Loader & Error Styles (Unchanged) --- */
 .loader {
   width: 50px;
   height: 50px;
@@ -122,53 +94,59 @@ button[type="submit"]:hover {
   border-radius: 15px;
   border: 1px solid rgba(255, 0, 0, 0.4);
 }
-
-/* ======================================= */
-/* RESPONSIVE STYLES              */
-/* ======================================= */
-
 /* For Tablets and smaller devices */
+@media (max-width: 768px) {
+  /* Assumes your main weather display has this class */
+  .weather-display {
+    flex-direction: column; /* Stacks items vertically */
+    align-items: flex-start; /* Aligns content to the left */
+  }
+
+  /* Assumes the right-side details have this class */
+  .weather-info-right {
+    width: 100%;
+    margin-top: 2rem; /* Adds space between stacked items */
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: left; /* Aligns text to the left */
+  }
+}
+/* Apply these classes to your forecast containers */
+.hourly-forecast, 
+.daily-forecast {
+  display: flex;
+  overflow-x: auto;   /* This is the magic line! */
+  padding-bottom: 15px; /* Adds space for the scrollbar */
+
+  /* Hides the scrollbar for a cleaner look (optional) */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hourly-forecast::-webkit-scrollbar, 
+.daily-forecast::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+/* For Mobile phones */
+@media (max-width: 480px) {
+  /* Assumes these classes are on your text elements */
+  .weather-info-left .city-name {
+    font-size: 2rem; 
+  }
+  .weather-info-left .temp {
+    font-size: 4rem;
+  }
+}
+/* For Tablets */
 @media (max-width: 768px) {
   .App {
     padding: 20px 15px;
   }
-
-  /* You might need to adjust font sizes in your components */
-  /* Example: */
-  /* .weather-display h1 { font-size: 4rem; } */
 }
-
 
 /* For Mobile phones */
 @media (max-width: 480px) {
   .App {
     padding: 20px 10px;
-  }
-
-  .search-form {
-    margin-bottom: 1.5rem;
-  }
-
-  .city-input {
-    padding: 12px 20px;
-    font-size: 0.9rem;
-  }
-
-  button[type="submit"] {
-    padding: 8px 20px;
-    font-size: 0.9rem;
-  }
-
-  /* Add styles for your other components here */
-  /* For example, making the hourly forecast scrollable */
-  .hourly-forecast-container {
-      overflow-x: auto; /* Allows horizontal scrolling */
-      white-space: nowrap; /* Prevents items from wrapping */
-      padding-bottom: 15px; /* Adds space for the scrollbar */
-  }
-
-  /* Hide scrollbar for a cleaner look (optional) */
-  .hourly-forecast-container::-webkit-scrollbar {
-      display: none;
   }
 }
