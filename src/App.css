@@ -129,24 +129,41 @@ button:hover { transform: scale(1.05); }
 }
 /* For Mobile phones */
 @media (max-width: 480px) {
-  /* Assumes these classes are on your text elements */
+  .App {
+    padding: 20px 10px;
+  }
+
+  /* --- SEARCH BAR FIX --- */
+  .search-form {
+    margin-bottom: 1.5rem;
+  }
+
+  .city-input {
+    /* Reduce padding and font size */
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  button[type="submit"] {
+    /* Make the button smaller to fit */
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+  /* --- END SEARCH BAR FIX --- */
+
+
+  /* Adjust fonts for other components */
   .weather-info-left .city-name {
-    font-size: 2rem; 
+    font-size: 2rem;
   }
   .weather-info-left .temp {
     font-size: 4rem;
   }
-}
-/* For Tablets */
-@media (max-width: 768px) {
-  .App {
-    padding: 20px 15px;
+  .weather-info-left .weather-icon {
+    width: 60px;
+    height: 60px;
   }
-}
-
-/* For Mobile phones */
-@media (max-width: 480px) {
-  .App {
-    padding: 20px 10px;
+  .weather-info-right .condition {
+    font-size: 1.2rem;
   }
 }
