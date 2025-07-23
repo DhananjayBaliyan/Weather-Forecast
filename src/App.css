@@ -35,11 +35,17 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  position: relative; /* Needed for button positioning */
+  position: relative; /* Crucial for positioning the button inside */
   width: 100%;
-  max-width: 500px; /* Give the search bar a max width */
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  
+  /* The dark, pill-shaped container style */
+  background-color: #2D3748; /* A dark slate gray */
+  border-radius: 50px;
+  padding: 5px; /* A little space around the inside */
+  border: 1px solid #4A5568; /* A subtle border */
 }
 
 .city-input {
@@ -47,40 +53,52 @@ body.stormy { background-image: url('/public/images/thunderstorm.jpg'); }
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur;
-  -webkit-backdrop-filter: blur(5px);
+  
+  /* Make the input field transparent to show the container's color */
+  background: transparent;
+  border: none;
+  backdrop-filter: none; /* Remove the blur effect */
+  
   color: #ffffff;
-  width: 100%; /* Make input take full width of its container */
+  width: 100%;
   outline: none;
   transition: all 0.3s ease;
 }
-.city-input::placeholder { color: rgba(255, 255, 255, 0.6); }
+
+.city-input::placeholder { 
+  color: rgba(255, 255, 255, 0.6); 
+}
+
+/* Remove the focus effect or adjust as needed */
 .city-input:focus {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.15);
+  background: transparent;
+  border-color: transparent;
 }
 
 button[type="submit"] {
   padding: 10px 25px;
   font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   border-radius: 30px;
   border: none;
   background-color: #ffffff;
   color: #1a202c;
   cursor: pointer;
-  transition: all 0.3s ease;
   
-  /* Position button inside the input area */
+  /* Remove absolute positioning if you prefer the button outside */
+  /* Or keep it to place it inside */
   position: absolute;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
+  
+  transition: all 0.3s ease;
 }
-button[type="submit"]:hover { transform: translateY(-50%) scale(1.05); }
+
+button[type="submit"]:hover { 
+  /* Adjust the hover transform to work with the new positioning */
+  transform: translateY(-50%) scale(1.05); 
+}
 
 /* Loader & Error Styles */
 .loader {
